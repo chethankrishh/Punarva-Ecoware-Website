@@ -1,0 +1,37 @@
+#root,
+.App,
+body,
+html {
+  height: 100%;
+  user-select: none;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #fff;
+  --green: #3b8e4a;
+  --dark-green: #006400;
+  --brown: #6b4f3a;
+  --beige: #f6ebdc;
+
+  --font-weight-normal: 400;
+  --font-weight-bold: 500;
+
+  --font-header: 3rem;
+  --font-subheader: 2rem;
+  --font-main-text: 1.5rem;
+  --font-text: 1.25rem;
+  --font-sub-text: 0.95rem;
+
+  /* Mobile */
+  --font-header-mobile: 2rem;
+  --font-subheader-mobile: 1.5rem;
+  --font-main-text-mobile: 1.25rem;
+  --font-text-mobile: 1rem;
+  --font-sub-text-mobile: 0.875rem;
+}
