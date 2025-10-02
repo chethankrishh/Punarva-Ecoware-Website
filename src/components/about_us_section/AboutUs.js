@@ -1,6 +1,7 @@
-// src/components/about_us_section/AboutUs.jsx
 import React from "react";
 import Styles from "./aboutUs.module.css";
+import { FaDownload } from "react-icons/fa";
+import brochureUrl from "../../assets/Punarva-Brochure.pdf";
 
 export default function AboutUs() {
   return (
@@ -51,6 +52,18 @@ export default function AboutUs() {
         <p className={Styles.signature}>
           🌿 <strong>Punarva — Pure Dining. Green Living.</strong>
         </p>
+
+        {/* Brochure download  */}
+        <div className={Styles.brochureSection}>
+          <a
+            href={brochureUrl}
+            download="Punarva-Brochure.pdf"
+            className={Styles.downloadBtn}
+          >
+            <FaDownload className={Styles.downloadIcon} />
+            Download Our Brochure
+          </a>
+        </div>
       </div>
     </section>
   );

@@ -1,7 +1,7 @@
-// src/components/header_section/Header.jsx
 import { useState, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
 import "./header.css";
+import PunarvaLogo from "../../assets/punarva_logo.png";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -29,7 +29,7 @@ export default function Header() {
     { label: "Products", to: "/products" },
     { label: "Benefits", to: "/benefits" },
     { label: "About Us", to: "/about" },
-    { label: "Contact", to: "/contact" },
+    { label: "Contact Us", to: "/contact" },
   ];
 
   return (
@@ -44,13 +44,7 @@ export default function Header() {
           aria-label="Go to home"
           onClick={() => setOpen(false)}
         >
-          <svg
-            className="brand-logo"
-            viewBox="0 0 100 100"
-            role="img"
-            aria-hidden
-          ></svg>
-          <span className="brand-text">Punarva</span>
+          <img src={PunarvaLogo} alt="Punarva Logo" className="brand-logo" />
         </Link>
 
         {/* Navigation: NavLink provides active styling */}
