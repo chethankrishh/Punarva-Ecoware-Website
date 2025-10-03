@@ -29,8 +29,8 @@ export default function Home() {
   const benefitsRef = useRef(null);
   const contactRef = useRef(null);
 
-  // header height (keep in sync with your header CSS). If header height is variable
-  // you could compute it dynamically: document.querySelector('.site-header').offsetHeight
+  const [blink, setBlink] = useState(true);
+
   const getHeaderOffset = () => {
     const el = document.querySelector(".site-header");
     return el ? el.offsetHeight : 72; // fallback
@@ -45,11 +45,9 @@ export default function Home() {
     "/contact": "contact",
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    // When location changes, scroll to appropriate section
     const id = pathToId[location.pathname] || "home";
-    // small timeout to ensure section is rendered (should be immediate here).
-    // requestAnimationFrame is better than arbitrary timeout.
     requestAnimationFrame(() => {
       const el = document.getElementById(id);
       if (!el) return;
@@ -57,14 +55,20 @@ export default function Home() {
       const headerOffset = getHeaderOffset();
       const elementPosition =
         el.getBoundingClientRect().top + window.pageYOffset;
-      const offsetPosition = elementPosition - headerOffset - 8; // extra gap
+      const offsetPosition = elementPosition - headerOffset - 8;
 
       window.scrollTo({
         top: offsetPosition,
         behavior: "smooth",
       });
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setBlink(false), 15000);
+    return () => clearTimeout(timer);
+  }, []);
 
   function capitalizeWords(str) {
     return str.toUpperCase();
@@ -99,7 +103,7 @@ export default function Home() {
                 Eco-friendly, compostable, biodegradable tableware
               </p>
               <button
-                className={Styles.explore_btn}
+                className={`${Styles.explore_btn} ${blink ? Styles.blink : ""}`}
                 onClick={() => {
                   // Always navigate to /products
                   if (location.pathname !== "/products") {
@@ -141,7 +145,7 @@ export default function Home() {
               </p>
 
               <button
-                className={Styles.explore_btn}
+                className={`${Styles.explore_btn} ${blink ? Styles.blink : ""}`}
                 onClick={() => {
                   // Always navigate to /products
                   if (location.pathname !== "/products") {

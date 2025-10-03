@@ -31,7 +31,8 @@
   font-weight: var(--font-weight-bold);
 }
 .hero_txt_naturally {
-  font-family: cursive;
+  font-family: "Luckiest Guy", cursive;
+  font-size: var(--font-header);
 }
 
 .hero_sub_txt {
@@ -48,11 +49,30 @@
   font-size: var(--font-sub-text);
   cursor: pointer;
   transition: 0.3s ease-in-out;
+  border: 2px solid transparent;
 }
 
 .explore_btn:hover {
   background: var(--green);
   transform: scale(1.05);
+}
+
+/* blinking border effect */
+.blink {
+  position: relative;
+  animation: blinkBorder 1s ease-in-out infinite;
+}
+
+@keyframes blinkBorder {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(11, 107, 57, 0); /* no glow */
+    border: 2px solid #0b6b39; /* normal green border */
+  }
+  50% {
+    box-shadow: 0 0 12px 4px rgba(11, 107, 57, 0.6); /* glowing green ring */
+    border: 2px solid #0b6b39; /* keep the border */
+  }
 }
 
 /* Media Query */
@@ -81,5 +101,10 @@
 
   .hero_main_txt {
     font-size: var(--font-header-mobile);
+  }
+
+  .hero_txt_naturally {
+    font-size: var(--font-subheader);
+    margin-top: 0.5rem;
   }
 }
