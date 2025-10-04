@@ -31,6 +31,9 @@ export default function Home() {
 
   const [blink, setBlink] = useState(true);
 
+  // NEW: show/enable the 'Go to Home' button after user scrolls past home section
+  const [homeButtonEnabled, setHomeButtonEnabled] = useState(false);
+
   const getHeaderOffset = () => {
     const el = document.querySelector(".site-header");
     return el ? el.offsetHeight : 72; // fallback
@@ -45,7 +48,6 @@ export default function Home() {
     "/contact": "contact",
   };
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const id = pathToId[location.pathname] || "home";
     requestAnimationFrame(() => {
@@ -69,6 +71,44 @@ export default function Home() {
     const timer = setTimeout(() => setBlink(false), 15000);
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    function onScroll() {
+      const homeEl = homeRef.current || document.getElementById("home");
+      if (!homeEl) return;
+
+      const homeBottom = homeEl.getBoundingClientRect().bottom;
+      const headerOffset = getHeaderOffset();
+      const threshold = 40;
+
+      // show button only when scrolled past home section
+      const scrolledPastHome = homeBottom <= headerOffset + threshold;
+      setHomeButtonEnabled(scrolledPastHome);
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    onScroll();
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
+  // Scroll to top/home handler (smooth + account for header)
+  const scrollToHome = () => {
+    const el = document.getElementById("home");
+    if (!el) return;
+    const headerOffset = getHeaderOffset();
+    const elementPosition = el.getBoundingClientRect().top + window.pageYOffset;
+    const offsetPosition = elementPosition - headerOffset - 8;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth",
+    });
+  };
 
   function capitalizeWords(str) {
     return str.toUpperCase();
@@ -192,6 +232,27 @@ export default function Home() {
       <section id="contact" ref={contactRef} className="section">
         <ContactUs />
       </section>
+
+      {/* FLOATING Go to Home BUTTON */}
+      <button
+        className={`${Styles.homeJumpBtn} ${
+          homeButtonEnabled
+            ? Styles.homeJumpBtnActive
+            : Styles.homeJumpBtnDisabled
+        }`}
+        onClick={() => {
+          if (homeButtonEnabled) scrollToHome();
+        }}
+        aria-disabled={!homeButtonEnabled}
+        aria-label="Go to Home section"
+        title={homeButtonEnabled ? "Go to Home" : "Scroll to enable"}
+      >
+        {/* simple icon + label (kept minimal) */}
+        <span className={Styles.homeJumpIcon} aria-hidden>
+          ⤒
+        </span>
+        <span className={Styles.homeJumpLabel}>Home</span>
+      </button>
     </>
   );
 }

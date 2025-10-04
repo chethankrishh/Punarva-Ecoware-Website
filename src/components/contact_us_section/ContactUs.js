@@ -57,11 +57,11 @@ export default function ContactUs() {
             <FaInstagram className={`${Styles.icon} ${Styles.instagram}`} />
             <h3>Instagram</h3>
             <a
-              href="https://instagram.com/punarva_ecoware"
+              href="https://instagram.com/punarva.store"
               target="_blank"
               rel="noopener noreferrer"
             >
-              @punarva_ecoware
+              @punarva.store
             </a>
           </div>
         </div>

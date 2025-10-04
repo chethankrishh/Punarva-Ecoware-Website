@@ -75,6 +75,77 @@
   }
 }
 
+/* Floating 'Go to Home' button */
+.homeJumpBtn {
+  position: fixed;
+  right: 20px;
+  bottom: 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 40px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 14px;
+  box-shadow: 0 10px 30px rgba(6, 20, 10, 0.08);
+  transform: translateY(0);
+  transition: transform 220ms ease, opacity 220ms ease, background 220ms ease,
+    box-shadow 220ms ease;
+  z-index: 140;
+  pointer-events: auto;
+  backdrop-filter: blur(4px);
+}
+
+/* Icon inside button */
+.homeJumpIcon {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+  text-align: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-size: 14px;
+}
+
+/* Visible label */
+.homeJumpLabel {
+  color: #fff;
+}
+
+/* Active look */
+.homeJumpBtnActive {
+  background: linear-gradient(90deg, #0b6b39, #0a5f32);
+  color: #fff;
+  box-shadow: 0 14px 36px rgba(11, 107, 57, 0.18);
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.homeJumpBtnActive:hover {
+  transform: translateY(-6px);
+}
+
+/* Hide the button completely when disabled */
+.homeJumpBtnDisabled {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.95);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Respect reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .homeJumpBtn,
+  .homeJumpBtnActive,
+  .homeJumpBtnDisabled {
+    transition: none;
+  }
+}
+
 /* Media Query */
 
 /* Tab */
@@ -106,5 +177,19 @@
   .hero_txt_naturally {
     font-size: var(--font-subheader);
     margin-top: 0.5rem;
+  }
+
+  .homeJumpBtn {
+    right: 6px;
+    bottom: 18px;
+    padding: 10px;
+    border-radius: 50%;
+    gap: 0;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+  }
+  .homeJumpLabel {
+    display: none;
   }
 }
