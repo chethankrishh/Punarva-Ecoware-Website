@@ -68,7 +68,7 @@ export default function Home() {
   }, [location.pathname]);
 
   useEffect(() => {
-    const timer = setTimeout(() => setBlink(false), 15000);
+    const timer = setTimeout(() => setBlink(false), 20000);
     return () => clearTimeout(timer);
   }, []);
 

@@ -1,5 +1,5 @@
 .contact_section {
-  padding: 80px 20px;
+  padding: 50px 20px;
   background: #faf8f2
     url("https://www.transparenttextures.com/patterns/paper-fibers.png");
   background-size: auto;
@@ -177,7 +177,7 @@
   }
 }
 
-/* Responsive tweaks */
+/* Responsive  */
 @media only screen and (max-width: 600px) {
   .heading {
     font-size: 28px;

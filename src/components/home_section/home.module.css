@@ -160,6 +160,25 @@
   .hero_main_txt {
     font-size: var(--font-header-mobile);
   }
+
+  .homeJumpBtn {
+    right: 6px;
+    bottom: 18px;
+    padding: 10px;
+    border-radius: 50%;
+    gap: 0;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+  }
+  .homeJumpLabel {
+    display: none;
+  }
+
+  .explore_btn:hover {
+    background: var(--dark-green);
+    transform: scale(1.05);
+  }
 }
 
 /* Mobile */
@@ -191,5 +210,10 @@
   }
   .homeJumpLabel {
     display: none;
+  }
+
+  .explore_btn:hover {
+    background: var(--dark-green);
+    transform: scale(1.05);
   }
 }
