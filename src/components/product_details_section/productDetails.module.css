@@ -188,9 +188,19 @@
 
   .variants {
     gap: 6px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  }
+
+  .variant {
+    min-width: unset;
   }
 
   .pageTitle {
     margin-bottom: 16px;
+  }
+
+  .categoryWrapper {
+    margin-bottom: 10px;
   }
 }

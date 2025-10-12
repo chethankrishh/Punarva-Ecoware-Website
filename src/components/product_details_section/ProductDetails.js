@@ -3,11 +3,22 @@ import Styles from "./productDetails.module.css";
 import "./productDetails.css";
 import products from "../../data/products";
 
+// import Swiper core and required modules
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+
 const ProductDetails = () => {
   const [productDetails, setProductDetails] = useState(products);
   const [selectedCategory, setSelectedCategory] = useState("all-products");
   const [animate, setAnimate] = useState(false);
-  const [expanded, setExpanded] = useState({}); // track expanded state per product
+  const [expanded, setExpanded] = useState({});
 
   // Detect mobile/tablet
   const [isMobileOrTab, setIsMobileOrTab] = useState(false);
@@ -59,10 +70,11 @@ const ProductDetails = () => {
     }, 300);
   };
 
+  const collapseAll = () => setExpanded({});
+
   return (
     <div className={Styles.productsPageWrapper}>
       <h2 className={Styles.pageTitle}>Product Details</h2>
-
       {/* Category Tabs */}
       <div className={Styles.categoryWrapper}>
         {["all-products", "plates", "bowls", "square-trays"].map((cat) => (
@@ -83,71 +95,114 @@ const ProductDetails = () => {
           </div>
         ))}
       </div>
-
       {/* Product List */}
-      <div
-        className={`${Styles.productList} ${animate ? "fade-out" : "fade-in"}`}
-      >
-        {productDetails?.map((p, index) => (
-          <div
-            key={p.id}
-            className={`${Styles.productCard} fade-stagger`}
-            style={{ animationDelay: `${index * 0.15}s` }}
+      {isMobileOrTab ? (
+        <div>
+          <Swiper
+            // install Swiper modules
+            modules={[Navigation, Pagination, Scrollbar, A11y]}
+            // spaceBetween={20}
+            slidesPerView={1}
+            navigation
+            pagination={{ clickable: true }}
+            className="swiper-container"
+            onSlideChange={() => {
+              collapseAll();
+            }}
           >
-            <div className={Styles.productHero}>
-              <img src={p.hero} alt={p.title} />
-            </div>
-
-            <div className={Styles.productInfo}>
-              <h3>{p.title}</h3>
-              <p className={Styles.productDesc}>{p.description}</p>
-
-              {/* Mobile/Tab → Show More button */}
-              {isMobileOrTab ? (
-                <>
-                  <button
-                    className={`${Styles.showMoreBtn} ${
-                      expanded[p.id] ? Styles.showMoreBtnActive : ""
-                    }`}
-                    onClick={() => toggleExpand(p.id)}
-                  >
-                    {expanded[p.id] ? "Hide" : "Show Variants"}
-                  </button>
-
+            <div
+              className={`${Styles.productlist_mobile} ${
+                animate ? "fade-out" : "fade-in"
+              }`}
+            >
+              {productDetails?.map((p, index) => (
+                <SwiperSlide className="swiper-slide" key={p.id}>
                   <div
-                    className={`${Styles.variantsWrapper} ${
-                      expanded[p.id] ? Styles.expand : Styles.collapse
-                    }`}
+                    key={p.id}
+                    className={`${Styles.productCard} fade-stagger`}
+                    style={{ animationDelay: `${index * 0.15}s` }}
                   >
-                    <div className={Styles.variants}>
-                      {p.variants.map((v, i) => (
-                        <div key={i} className={Styles.variant}>
-                          <div className={Styles.variantTitle}>
-                            {v.label ??
-                              (v.capacity_ml
-                                ? `${v.capacity_ml} ml`
-                                : "Variant")}
-                          </div>
-                          <ul className={Styles.variantMeasures}>
-                            {v.diameter_mm && <li>Dia: {v.diameter_mm} mm</li>}
-                            {v.depth_mm && <li>Depth: {v.depth_mm} mm</li>}
-                            {v.capacity_ml && (
-                              <li>Capacity: {v.capacity_ml} ml</li>
-                            )}
-                            {v.area_mm && (
-                              <li>
-                                Area: {v.area_mm.w} × {v.area_mm.h} mm
-                              </li>
-                            )}
-                            {v.sku && <li>SKU: {v.sku}</li>}
-                          </ul>
-                        </div>
-                      ))}
+                    <div className={Styles.productHero}>
+                      <img src={p.hero} alt={p.title} />
                     </div>
-                  </div>
-                </>
-              ) : (
-                // Desktop → always show variants
+
+                    <div className={Styles.productInfo_mobile}>
+                      <h3>{p.title}</h3>
+                      <p className={Styles.productDesc}>{p.description}</p>
+
+                      <>
+                        <button
+                          className={`${Styles.showMoreBtn} ${
+                            expanded[p.id] ? Styles.showMoreBtnActive : ""
+                          }`}
+                          onClick={() => toggleExpand(p.id)}
+                        >
+                          {expanded[p.id] ? "Hide" : "Show Variants"}
+                        </button>
+
+                        <div
+                          className={`${Styles.variantsWrapper} ${
+                            expanded[p.id] ? Styles.expand : Styles.collapse
+                          }`}
+                        >
+                          <div className={Styles.variants}>
+                            {p.variants.map((v, i) => (
+                              <div key={i} className={Styles.variant}>
+                                <div className={Styles.variantTitle}>
+                                  {v.label ??
+                                    (v.capacity_ml
+                                      ? `${v.capacity_ml} ml`
+                                      : "Variant")}
+                                </div>
+                                <ul className={Styles.variantMeasures}>
+                                  {v.diameter_mm && (
+                                    <li>Dia: {v.diameter_mm} mm</li>
+                                  )}
+                                  {v.depth_mm && (
+                                    <li>Depth: {v.depth_mm} mm</li>
+                                  )}
+                                  {v.capacity_ml && (
+                                    <li>Capacity: {v.capacity_ml} ml</li>
+                                  )}
+                                  {v.area_mm && (
+                                    <li>
+                                      Area: {v.area_mm.w} × {v.area_mm.h} mm
+                                    </li>
+                                  )}
+                                  {v.sku && <li>SKU: {v.sku}</li>}
+                                </ul>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </>
+                    </div>
+                  </div>{" "}
+                </SwiperSlide>
+              ))}
+            </div>
+          </Swiper>
+        </div>
+      ) : (
+        <div
+          className={`${Styles.productList} ${
+            animate ? "fade-out" : "fade-in"
+          }`}
+        >
+          {productDetails?.map((p, index) => (
+            <div
+              key={p.id}
+              className={`${Styles.productCard} fade-stagger`}
+              style={{ animationDelay: `${index * 0.15}s` }}
+            >
+              <div className={Styles.productHero}>
+                <img src={p.hero} alt={p.title} />
+              </div>
+
+              <div className={Styles.productInfo}>
+                <h3>{p.title}</h3>
+                <p className={Styles.productDesc}>{p.description}</p>
+
                 <div className={Styles.variants}>
                   {p.variants.map((v, i) => (
                     <div key={i} className={Styles.variant}>
@@ -169,11 +224,11 @@ const ProductDetails = () => {
                     </div>
                   ))}
                 </div>
-              )}
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
