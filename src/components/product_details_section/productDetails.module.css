@@ -163,6 +163,87 @@
   color: #333;
 }
 
+/* Variant tabs (per product) */
+.variantTabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 10px 0 8px;
+}
+
+.variantTabBtn {
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(11, 107, 57, 0.08);
+  background: #f7faf6;
+  color: #0b6b39;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 180ms ease;
+  font-size: 13px;
+}
+
+.variantTabBtn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(11, 107, 57, 0.06);
+}
+
+.variantTabBtnActive {
+  background: linear-gradient(90deg, #0b6b39, #0a5f32);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 10px 28px rgba(11, 107, 57, 0.16);
+}
+
+/* Single details box (shared fields) */
+.detailsBox {
+  margin-top: 10px;
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 12px;
+  border: 1px solid rgba(6, 20, 10, 0.04);
+  box-shadow: 0 8px 20px rgba(6, 20, 10, 0.04);
+  max-width: 420px;
+}
+
+.detailsRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px 0;
+  border-bottom: 1px dashed rgba(6, 20, 10, 0.03);
+  align-items: center;
+}
+
+.detailsRow:last-child {
+  border-bottom: none;
+}
+
+.detailsLabel {
+  color: #3b4b44;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.detailsValue {
+  color: #1f2f2a;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.productInfo_mobile {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.variants {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
 /* Media Query */
 
 /* Tab */
@@ -202,5 +283,14 @@
 
   .categoryWrapper {
     margin-bottom: 10px;
+  }
+
+  .detailsBox {
+    max-width: 100%;
+    padding: 10px;
+  }
+  .variantTabBtn {
+    padding: 8px 10px;
+    font-size: 12px;
   }
 }

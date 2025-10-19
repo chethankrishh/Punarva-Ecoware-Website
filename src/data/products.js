@@ -20,42 +20,42 @@ const products = [
     ],
     variants: [
       {
-        label: '12"',
+        label: "12 inch",
         diameter_mm: 302,
         depth_mm: 24,
         label_short: '12"',
         sku: "RP-12",
       },
       {
-        label: '11"',
+        label: "11 inch",
         diameter_mm: 280,
         depth_mm: 23,
         label_short: '11"',
         sku: "RP-11",
       },
       {
-        label: '10"',
+        label: "10 inch",
         diameter_mm: 255,
         depth_mm: 23,
         label_short: '10"',
         sku: "RP-10",
       },
       {
-        label: '9"',
+        label: "9 inch",
         diameter_mm: 225,
         depth_mm: 18,
         label_short: '9"',
         sku: "RP-09",
       },
       {
-        label: '7"',
+        label: "7 inch",
         diameter_mm: 175,
         depth_mm: 19.5,
         label_short: '7"',
         sku: "RP-07",
       },
       {
-        label: '6"',
+        label: "6 inch",
         diameter_mm: 151,
         depth_mm: 18,
         label_short: '6"',
@@ -79,14 +79,14 @@ const products = [
       // 3CP
       {
         family: "3CP",
-        label: '10"',
+        label: "10 inch",
         diameter_mm: 255,
         depth_mm: 25.3,
         sku: "RCP3-10",
       },
       {
         family: "3CP",
-        label: '9"',
+        label: "9 inch",
         diameter_mm: 225,
         depth_mm: 20,
         sku: "RCP3-09",
@@ -95,14 +95,14 @@ const products = [
       // 4CP
       {
         family: "4CP",
-        label: '12"',
+        label: "12 inch",
         diameter_mm: 302,
         depth_mm: 25.5,
         sku: "RCP4-12",
       },
       {
         family: "4CP",
-        label: '11"',
+        label: "11 inch",
         diameter_mm: 280,
         depth_mm: 25.5,
         sku: "RCP4-11",
