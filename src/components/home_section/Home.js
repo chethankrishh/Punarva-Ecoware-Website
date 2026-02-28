@@ -103,6 +103,7 @@ export default function Home() {
     const headerOffset = getHeaderOffset();
     const elementPosition = el.getBoundingClientRect().top + window.pageYOffset;
     const offsetPosition = elementPosition - headerOffset - 8;
+    navigate("/");
 
     window.scrollTo({
       top: offsetPosition,
@@ -202,6 +203,16 @@ export default function Home() {
                 }}
               >
                 Explore Products
+              </button>
+
+              <button
+                className={`${Styles.explore_btn} ${blink ? Styles.blink : ""}`}
+                onClick={() => {
+                  window.location.href =
+                    "https://www.amazon.in/stores/page/53AAAB46-69AA-4625-871D-113CA4344FB4?ingress=2&lp_context_asin=B0G5HMKZDC&lp_context_query=punarnava%20bagasse%20plates&visitId=79a52208-905d-43a6-8fb4-1c8af8743d54&ref_=ast_bln";
+                }}
+              >
+                Buy Now
               </button>
             </div>
           </div>
