@@ -40,6 +40,11 @@
   margin: 1rem 0;
 }
 
+.btn_wrp {
+  display: flex;
+  gap: 12px;
+}
+
 .explore_btn {
   background: var(--dark-green);
   color: var(--primary-color);
@@ -50,7 +55,7 @@
   cursor: pointer;
   transition: 0.3s ease-in-out;
   border: 2px solid transparent;
-  margin: 0 10px;
+  width: fit-content;
 }
 
 .explore_btn:hover {
@@ -223,5 +228,11 @@
   .explore_btn:hover {
     background: var(--dark-green);
     transform: scale(1.05);
+  }
+
+  .btn_wrp {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
   }
 }

@@ -143,25 +143,37 @@ export default function Home() {
               <p className={Styles.hero_sub_txt}>
                 Eco-friendly, compostable, biodegradable tableware
               </p>
-              <button
-                className={`${Styles.explore_btn} ${blink ? Styles.blink : ""}`}
-                onClick={() => {
-                  // Always navigate to /products
-                  if (location.pathname !== "/products") {
-                    navigate("/products");
-                  }
-
-                  // Smooth scroll to section
-                  setTimeout(() => {
-                    const el = document.getElementById("products");
-                    if (el) {
-                      el.scrollIntoView({ behavior: "smooth" });
+              <div className={Styles.btn_wrp}>
+                <button
+                  className={`${Styles.explore_btn} ${blink ? Styles.blink : ""}`}
+                  onClick={() => {
+                    // Always navigate to /products
+                    if (location.pathname !== "/products") {
+                      navigate("/products");
                     }
-                  }, 100);
-                }}
-              >
-                Explore Products
-              </button>
+
+                    // Smooth scroll to section
+                    setTimeout(() => {
+                      const el = document.getElementById("products");
+                      if (el) {
+                        el.scrollIntoView({ behavior: "smooth" });
+                      }
+                    }, 100);
+                  }}
+                >
+                  Explore Products
+                </button>
+
+                <button
+                  className={`${Styles.explore_btn} ${blink ? Styles.blink : ""}`}
+                  onClick={() => {
+                    window.location.href =
+                      "https://www.amazon.in/stores/page/53AAAB46-69AA-4625-871D-113CA4344FB4?ingress=2&lp_context_asin=B0G5HMKZDC&lp_context_query=punarnava%20bagasse%20plates&visitId=79a52208-905d-43a6-8fb4-1c8af8743d54&ref_=ast_bln";
+                  }}
+                >
+                  Buy Now
+                </button>
+              </div>
             </div>
           </div>
         ) : (
@@ -185,35 +197,37 @@ export default function Home() {
                 Eco-friendly, compostable, biodegradable tableware
               </p>
 
-              <button
-                className={`${Styles.explore_btn} ${blink ? Styles.blink : ""}`}
-                onClick={() => {
-                  // Always navigate to /products
-                  if (location.pathname !== "/products") {
-                    navigate("/products");
-                  }
-
-                  // Smooth scroll to section
-                  setTimeout(() => {
-                    const el = document.getElementById("products");
-                    if (el) {
-                      el.scrollIntoView({ behavior: "smooth" });
+              <div className={Styles.btn_wrp}>
+                <button
+                  className={`${Styles.explore_btn} ${blink ? Styles.blink : ""}`}
+                  onClick={() => {
+                    // Always navigate to /products
+                    if (location.pathname !== "/products") {
+                      navigate("/products");
                     }
-                  }, 100);
-                }}
-              >
-                Explore Products
-              </button>
 
-              <button
-                className={`${Styles.explore_btn} ${blink ? Styles.blink : ""}`}
-                onClick={() => {
-                  window.location.href =
-                    "https://www.amazon.in/stores/page/53AAAB46-69AA-4625-871D-113CA4344FB4?ingress=2&lp_context_asin=B0G5HMKZDC&lp_context_query=punarnava%20bagasse%20plates&visitId=79a52208-905d-43a6-8fb4-1c8af8743d54&ref_=ast_bln";
-                }}
-              >
-                Buy Now
-              </button>
+                    // Smooth scroll to section
+                    setTimeout(() => {
+                      const el = document.getElementById("products");
+                      if (el) {
+                        el.scrollIntoView({ behavior: "smooth" });
+                      }
+                    }, 100);
+                  }}
+                >
+                  Explore Products
+                </button>
+
+                <button
+                  className={`${Styles.explore_btn} ${blink ? Styles.blink : ""}`}
+                  onClick={() => {
+                    window.location.href =
+                      "https://www.amazon.in/stores/page/53AAAB46-69AA-4625-871D-113CA4344FB4?ingress=2&lp_context_asin=B0G5HMKZDC&lp_context_query=punarnava%20bagasse%20plates&visitId=79a52208-905d-43a6-8fb4-1c8af8743d54&ref_=ast_bln";
+                  }}
+                >
+                  Buy Now
+                </button>
+              </div>
             </div>
           </div>
         )}
